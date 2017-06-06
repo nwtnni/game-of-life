@@ -18,6 +18,16 @@ class GameBoard
     end
   end
 
+  def size
+    [@m, @n]
+  end
+
+  def alive?(i, j)
+    @board[i][j] if in_bounds?(i, j)
+  end
+
+  private
+
   def transition(i, j)
     if @board[i][j]
       neighbors(i, j).between?(2, 3) ? true : false
