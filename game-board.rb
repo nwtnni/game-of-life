@@ -1,6 +1,7 @@
 class GameBoard
-
-  @@delta = [-1, 0, 1]
+  @@delta = [[-1, -1], [-1, 0], [-1, 1],
+             [0, -1], [0, 1],
+             [1, -1], [1, 0], [1, 1]]
 
   def initialize(m, n, density)
     @m = m
@@ -11,13 +12,13 @@ class GameBoard
 
   def step
     @board.each_index do |i|
-      row.each_index do |j|
-        @board = transition(i, j)
+      @board[i].each_index do |j|
+        @board[i][j] = transition(i, j)
       end
     end
   end
 
-  def transition(i, j) 
+  def transition(i, j)
     if @board[i][j]
       neighbors(i, j).between?(2, 3) ? true : false
     else
@@ -26,7 +27,15 @@ class GameBoard
   end
 
   def neighbors(i, j)
-
+    @@delta.reduce(0) do |sum, adj|
+      d_i, d_j = adj
+      adj_i = i + d_i
+      adj_j = j + d_j
+      if in_bounds?(adj_i, adj_j)
+        sum + 1 if @board[adj_i][adj_j]
+      end
+      sum
+    end
   end
 
   def in_bounds?(i, j)
