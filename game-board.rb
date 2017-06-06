@@ -41,12 +41,12 @@ class GameBoard
   end
 
   def neighbors(i, j)
-    @@delta.reduce(0) do |sum, adj|
+    DELTA.reduce(0) do |sum, adj|
       d_i, d_j = adj
       adj_i = i + d_i
       adj_j = j + d_j
       if in_bounds?(adj_i, adj_j)
-        sum + 1 if @board[adj_i][adj_j]
+        sum += 1 if @board[adj_i][adj_j]
       end
       sum
     end

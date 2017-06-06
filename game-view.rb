@@ -10,7 +10,7 @@ class GameView
 
   def draw
     (0...@m).to_a.each do |i|
-      (0...@n).to_a each do |j|
+      (0...@n).to_a.each do |j|
         @game.alive?(i, j) ? print(ALIVE) : print(DEAD)
       end
       print("\n")
