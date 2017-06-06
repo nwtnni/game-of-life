@@ -10,15 +10,17 @@ class GameBoard
     @n = n
     @generations = 0
     @board = Array.new(@m) { Array.new(@n) }
+    @updates = Array.new(@m) { Array.new(@n) }
     @board.each { |row| row.map! { rand(density).zero? ? true : false } }
   end
 
   def step
     @board.each_index do |i|
       @board[i].each_index do |j|
-        @board[i][j] = transition(i, j)
+        @updates[i][j] = transition(i, j)
       end
     end
+    @updates.each_index { |i| @updates[i].each_index { |j| @board[i][j] = @updates[i][j] } }
     @generations += 1
   end
 

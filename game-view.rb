@@ -1,7 +1,7 @@
 class GameView
 
-  ALIVE = :o
-  DEAD = :x
+  ALIVE = :'O '
+  DEAD = :'X '
 
   def initialize(game)
     @game = game
@@ -10,11 +10,20 @@ class GameView
 
   def draw
     (0...@m).to_a.each do |i|
+      puts horizontal
       (0...@n).to_a.each do |j|
+        print '| '
         @game.alive?(i, j) ? print(ALIVE) : print(DEAD)
       end
-      print("\n")
+      puts '|'
     end
-    print "Generations elapsed: #{@game.generations}\n"
+    puts horizontal
+    puts "Generations elapsed: #{@game.generations}\n"
+  end
+
+  private
+
+  def horizontal
+    ('--' * @n * 2) + '-'
   end
 end
