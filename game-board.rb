@@ -1,11 +1,14 @@
 class GameBoard
-  @@delta = [[-1, -1], [-1, 0], [-1, 1],
-             [0, -1], [0, 1],
-             [1, -1], [1, 0], [1, 1]]
+  attr_reader :generations
+
+  DELTA = [[-1, -1], [-1, 0], [-1, 1],
+           [0, -1], [0, 1],
+           [1, -1], [1, 0], [1, 1]].freeze
 
   def initialize(m, n, density)
     @m = m
     @n = n
+    @generations = 0
     @board = Array.new(@m) { Array.new(@n) }
     @board.each { |row| row.map! { rand(density).zero? ? true : false } }
   end
@@ -16,6 +19,7 @@ class GameBoard
         @board[i][j] = transition(i, j)
       end
     end
+    @generations += 1
   end
 
   def size
