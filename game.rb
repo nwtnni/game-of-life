@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
-require "./game-board"
-require "./game-view"
+require "./game_board"
+require "./game_view"
 
 m, n, density = ARGV
 m = m.to_i
