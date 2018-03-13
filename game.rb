@@ -17,7 +17,7 @@ view = GameView.new(game)
 view.draw
 
 loop do
-  STDIN.gets
+  sleep 0.2
   game.step
   view.draw
 end
