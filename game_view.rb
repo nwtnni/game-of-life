@@ -1,7 +1,7 @@
 class GameView
 
   ALIVE = :'O '
-  DEAD = :'X '
+  DEAD = :'. '
 
   def initialize(game)
     @game = game
